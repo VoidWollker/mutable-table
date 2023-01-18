@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Button, Input, Table} from 'reactstrap'
+import {Table} from 'reactstrap'
+import nextId from 'react-id-generator'
 import AddNewRow from '../AddNewRow/AddNewRow.jsx'
 import ChangeRow from '../ChangeRow/ChangeRow.jsx'
 import TableRow from '../TableRow/TableRow.jsx'
@@ -15,8 +16,10 @@ export default class TableComponent extends Component{
         this.addRow = this.addRow.bind(this)
 
         this.state = {
-            columnCount: 2,
-            data: []
+            data: [{
+                id: 1,
+                name: 'Roman'
+            }]
         }
     }
 
@@ -52,8 +55,6 @@ export default class TableComponent extends Component{
                 this.setState({data: newData})
             }
         })
-
-        
     }
 
     deleteRow(rowId){
@@ -67,7 +68,10 @@ export default class TableComponent extends Component{
     }
 
     addRow(rowData){
-        this.setState({data: this.state.data.concat([rowData])})
+        let newData = this.state.data
+        rowData['id'] = nextId()
+        newData.push(rowData)
+        this.setState({data: newData})
     }
 
     render() {
