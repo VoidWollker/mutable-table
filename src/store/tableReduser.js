@@ -7,7 +7,6 @@ const initialState = {
 
 const changeModeOn = (state, row) => {
     const newData = [...state.data]
-    console.log('newData: ', newData, 'row: ', row)
     newData[row].changeMode = true
     state.data = newData
 }
@@ -24,7 +23,6 @@ export const tableSlice = createSlice({
     reducers: {
         changeMode: (state, action) =>{
             state.data.map((row, index) =>{
-                console.log('row: ', row, 'index: ', index);
                 if (row.id == action.payload){
                     if (row.changeMode){
                         changeModeOff(state, index)
@@ -51,7 +49,6 @@ export const tableSlice = createSlice({
             })
         },
         addRow(state, action){
-            console.log(action.payload);
             let newData = [...state.data]
             action.payload['id'] = nextId()
             newData.push(action.payload)

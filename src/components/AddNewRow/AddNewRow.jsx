@@ -14,6 +14,19 @@ export default function AddNewRow({rowData}){
         setRow(newRow)
     }
 
+    const checkIsNotEmpty = () =>{
+        let newInputs = document.getElementsByClassName('newInput')
+        let trueCounter = 0
+        if (newInputs.length != 0){
+            Array.prototype.map.call(newInputs, (input) =>{
+                if (input.value.trim().length != 0){
+                    trueCounter++
+                }
+            })
+        }
+        return trueCounter == newInputs.length
+    }
+
     const clearCells = () =>{
         let newInputs = document.getElementsByClassName('newInput')
         Array.prototype.map.call(newInputs, (input) =>{
@@ -39,9 +52,13 @@ export default function AddNewRow({rowData}){
                 }}
             )}
             <td width={'10%'}><Button color='primary' onClick={() => {
-                clearCells()
-                dispatch(addRow(row))}
-            }>Add</Button></td>
+                if (checkIsNotEmpty()){
+                    clearCells()
+                    dispatch(addRow(row))
+                }else{
+                    alert('Пустые строки не допускаются для ввода!')
+                }
+            }}>Add</Button></td>
             <td width={'10%'}></td>
         </tr>
     )
