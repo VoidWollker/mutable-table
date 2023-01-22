@@ -1,8 +1,11 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 import { Input, Button } from "reactstrap"
+import { addRow } from "../../store/tableReduser"
 
-export default function AddNewRow({rowData, addRow}){
+export default function AddNewRow({rowData}){
     const [row, setRow] = useState(rowData)
+    const dispatch = useDispatch()
 
     const changeCell = (e, index) =>{
         let newRow = {...row}
@@ -35,7 +38,7 @@ export default function AddNewRow({rowData, addRow}){
             )}
             <td><Button color='primary' onClick={() => {
                 clearCells()
-                addRow(row)}
+                dispatch(addRow(row))}
             }>Add</Button></td>
         </tr>
     )

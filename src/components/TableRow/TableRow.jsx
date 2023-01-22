@@ -1,7 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Button } from "reactstrap";
+import { changeMode, deleteRow } from "../../store/tableReduser";
 
-export default function TableRow({data, changeMode, deleteRow}){
+export default function TableRow({data}){
+    const dispatch = useDispatch()
+
     return(
         <tr>
             {Object.keys(data).map(key =>{
@@ -9,10 +13,9 @@ export default function TableRow({data, changeMode, deleteRow}){
                 if (key != 'changeMode'){
                     return(<td>{cell}</td>)
                 }
-                
             })}
-            <td><Button color="primary" onClick={() => changeMode(data.id)}>Change</Button></td>
-            <td><Button color="danger" onClick={() => deleteRow(data.id)}>Delete</Button></td>
+            <td width={'10%'}><Button color="primary" onClick={() => dispatch(changeMode(data.id))}>Change</Button></td>
+            <td width={'10%'}><Button color="danger" onClick={() => dispatch(deleteRow(data.id))}>Delete</Button></td>
         </tr>
     )
 }

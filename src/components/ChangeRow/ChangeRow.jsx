@@ -1,35 +1,33 @@
 import React, { useState } from 'react'
 import ChangeCell from '../ChangeCell/ChangeCell'
 import { Button } from 'reactstrap'
+import { useDispatch } from 'react-redux'
+import { changeMode, changeData } from '../../store/tableReduser'
 
-export default class ChangeRow extends React.Component{
-    constructor(props){
-        super(props)
+export default function ChangeRow({inputData}){
+    const [data, setData] = useState(inputData)
+    const dispatch = useDispatch()
 
-        this.changeCell = this.changeCell.bind(this)
-
-        this.state = {
-            data: this.props.inputData
-        }
-    }
-
-    changeCell(cellIndex, newCellData){
-        let newData = this.state.data
+    const changeCell = (cellIndex, newCellData) => {
+        let newData = {...data}
+        console.log(newData);
         newData[cellIndex] = newCellData
-        this.setState({data: newData})
+        setData(newData)
     }
+    changeCell.bind(this)
 
-    render(){
-        return(
-            <tr>
-                {Object.keys(this.state.data).map(key =>{
-                    if (key != 'changeMode'){
-                        return <ChangeCell cellKey={key} cellData={this.state.data[key]} changeCell={this.changeCell}/>
-                    }
-                })}
-                <td><Button color='success' onClick={() => {this.props.changeData(this.state.data.id, this.state.data); this.props.changeMode(this.state.data.id)}}>Done</Button></td>
-                <td><Button color='danger' onClick={() => this.props.changeMode(this.state.data.id)}>Cancel</Button></td>
-            </tr>
-        )
-    }
+    return(
+        <tr>
+            {Object.keys(data).map(key =>{
+                if (key != 'changeMode' && key != 'id'){
+                    return <ChangeCell cellKey={key} cellData={data[key]} changeCell={changeCell}/>
+                }
+                else if(key == 'id'){
+                    return <td width={'40%'}>{data[key]}</td>
+                }
+            })}
+            <td width={'10%'}><Button color='success' onClick={() => {dispatch(changeData({rowId: data.id, newDataRow: data})); dispatch(changeMode(data.id))}}>Done</Button></td>
+            <td width={'10%'}><Button color='danger' onClick={() => dispatch(changeMode(data.id))}>Cancel</Button></td>
+        </tr>
+    )
 }   
