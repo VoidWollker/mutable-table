@@ -34,12 +34,15 @@ export default function AddNewRow({rowData}){
             {Object.keys(row).map((key, index) => {
                 if(key != 'changeMode' && key != 'id'){
                     return <td><Input className="newInput" placeholder={key} onChange={e => changeCell(e, index)}/></td>
+                }else if (key == 'id'){
+                    return <td width={'40%'}></td>
                 }}
             )}
-            <td><Button color='primary' onClick={() => {
+            <td width={'10%'}><Button color='primary' onClick={() => {
                 clearCells()
                 dispatch(addRow(row))}
             }>Add</Button></td>
+            <td width={'10%'}></td>
         </tr>
     )
 }

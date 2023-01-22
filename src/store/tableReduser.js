@@ -2,11 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import nextId from 'react-id-generator'
 
 const initialState = {
-    data: [{
-        changeMode: false,
-        id: 1,
-        name: 'Roman'
-    }],
+    data: [],
 }
 
 const changeModeOn = (state, row) => {
