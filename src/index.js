@@ -6,10 +6,18 @@ import { store } from './store/index'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import TableComponent from "./components/TableComponent/TableComponent.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <Provider store={store}>
-        <TableComponent/>
+        <BrowserRouter>
+        <Routes>
+            <Route path="/">
+                <Route index element={<TableComponent/>}/>
+                <Route path="register"/>
+            </Route>
+        </Routes>
+        </BrowserRouter>
     </Provider>
 )

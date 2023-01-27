@@ -1,20 +1,22 @@
 import React from 'react'
 import {Table} from 'reactstrap'
 import AddNewRow from '../AddNewRow/AddNewRow.jsx'
-import ChangeRow from '../ChangeRow/ChangeRow.jsx'
-import TableRow from '../TableRow/TableRow.jsx'
+import ChangeRow from './ChangeRow.jsx'
+import TableRow from './TableRow.jsx'
 
 import { useSelector } from 'react-redux'
 
 export default function TableComponent(){
+    const header = useSelector(state => state.table.header)
     const data = useSelector((state) => state.table.data)
+
+    const cellWidth = `${80/header.length}%`
 
     return(
         <Table>
             <thead>
                 <tr>
-                    <th width={'40%'}>ID</th>
-                    <th width={'40%'}>Name</th>
+                    {header.map(columnName => <th width={cellWidth}>{columnName}</th>)}
                     <th width={'10%'}></th>
                     <th width={'10%'}></th>
                 </tr>
@@ -25,10 +27,10 @@ export default function TableComponent(){
                         return(<ChangeRow key={row.id} inputData={row}/>)
                     }
                     else{
-                        return (<TableRow key={row.id} data={row}/>)
+                        return (<TableRow key={row.id} data={row} width={cellWidth}/>)
                     }
                 })}
-                <AddNewRow rowData={{changeMode: false, id: '', name: ''}}/>
+                {/* <AddNewRow rowData={{changeMode: false, id: '', name: ''}}/> */}
             </tbody>
         </Table>
         

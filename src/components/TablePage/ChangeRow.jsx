@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ChangeCell from '../ChangeCell/ChangeCell'
+import ChangeCell from './ChangeCell'
 import { Button } from 'reactstrap'
 import { useDispatch } from 'react-redux'
 import { changeMode, changeData } from '../../store/tableReduser'
