@@ -1,13 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import nextId from 'react-id-generator'
+import {Guid} from 'js-guid'
 
 const initialState = {
     header: ['id', 'Name', 'Phone number', 'E-mail'],
-    data: [{
-        id: 'id1', 
-        name: 'Roman', 
-        phone: '89879338424',
-        Email: 'roman.nichi.o@gmail.com'}],
+    data: [],
 }
 
 const changeModeOn = (state, row) => {
@@ -55,7 +51,8 @@ export const tableSlice = createSlice({
         },
         addRow(state, action){
             let newData = [...state.data]
-            action.payload['id'] = nextId()
+            console.log(action.payload['id']);
+            action.payload['id'] = Guid.newGuid().toString()
             newData.push(action.payload)
             state.data = newData
         }

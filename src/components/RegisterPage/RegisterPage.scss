@@ -1,0 +1,29 @@
+$btn-width: 10%;
+
+.btn-confirm{
+    width: $btn-width;
+}
+
+.btn-cancel{
+    width: $btn-width;
+}
+
+.btn-group{
+    width: $btn-width*2.5;
+    align-self: center;
+}
+.sas {
+    margin: auto;
+    margin-top: 10%;
+    padding-top: 50px;
+    padding-left: 75px;
+    width: 50%;
+    height: 50%;
+    border: 1px solid grey;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+
+}
+.btnbtn{
+    width: 55%;
+    margin-right: 15%;
+}
