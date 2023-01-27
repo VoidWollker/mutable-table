@@ -5,7 +5,7 @@ import { store } from './store/index'
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-import TableComponent from "./components/TableComponent/TableComponent.jsx";
+import TableComponent from "./components/TablePage/TableComponent.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
