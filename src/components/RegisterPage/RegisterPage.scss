@@ -9,10 +9,12 @@ $btn-width: 10%;
 }
 
 .btn-group{
-    width: $btn-width*2.5;
+    width: 55%;
+    margin-right: 15%;
     align-self: center;
 }
-.sas {
+
+form {
     margin: auto;
     margin-top: 10%;
     padding-top: 50px;
@@ -22,8 +24,4 @@ $btn-width: 10%;
     border: 1px solid grey;
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
 
-}
-.btnbtn{
-    width: 55%;
-    margin-right: 15%;
 }

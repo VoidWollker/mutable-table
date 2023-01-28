@@ -43,7 +43,7 @@ export default function RegisterForm({}){
                         </FormGroup>
                 )}
             })}
-            <FormGroup className="d-flex flex-row btn-group btnbtn">
+            <FormGroup className="d-flex flex-row btn-group">
                 <Button className="btn m-1 btn-confirm" color="primary" onClick={() =>{
                     if (checkIsNotEmpty()){
                         dispatch(addRow(formData))
